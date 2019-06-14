@@ -36,6 +36,8 @@ namespace API
             services.AddTransient<IGetUserCommand, GetUserCommand>();
             services.AddTransient<IGetPostsCommand, GetPostsCommand>();
             services.AddTransient<IGetPostCommand, GetPostCommand>();
+            services.AddTransient<IGetCommentsCommand, GetCommentsCommand>();
+            services.AddTransient<IGetCommentCommand, GetCommentCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
