@@ -29,11 +29,7 @@
         },
         "frameworks": {
           "netcoreapp2.1": {
-            "projectReferences": {
-              "C:\\Users\\igor7\\source\\repos\\ASP-Blog\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\igor7\\source\\repos\\ASP-Blog\\Domain\\Domain.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

@@ -16,13 +16,16 @@ namespace Web.Controllers
         private readonly IAddPostCommand _addPost;
         private readonly IGetPostsCommand _getPosts;
         private readonly IGetPostCommand _getOnePost;
+        private readonly IEditPostCommand _editPost;
 
-        public PostsController(IAddPostCommand addPost, IGetPostsCommand getPosts, IGetPostCommand getOnePost)
+        public PostsController(IAddPostCommand addPost, IGetPostsCommand getPosts, IGetPostCommand getOnePost, IEditPostCommand editPost)
         {
             _addPost = addPost;
             _getPosts = getPosts;
             _getOnePost = getOnePost;
+            _editPost = editPost;
         }
+
 
 
         // GET: Posts
@@ -84,23 +87,40 @@ namespace Web.Controllers
         // GET: Posts/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                var dto = _getOnePost.Execute(id);
+                return View(dto);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("index");
+            }
         }
 
         // POST: Posts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, PostDTO dto)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(dto);
+            }
+
             try
             {
-                // TODO: Add update logic here
-
+                _editPost.Execute(dto);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(EntityNotFoundException)
             {
-                return View();
+                return RedirectToAction(nameof(Index));
+            }
+            catch(EntityExistException)
+            {
+                TempData["error"] = "Post with same name already exist!";
+                return View(dto);
             }
         }
 

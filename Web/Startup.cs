@@ -40,6 +40,7 @@ namespace Web
             services.AddTransient<IAddPostCommand, AddPostCommand>();
             services.AddTransient<IGetPostsCommand, GetPostsCommand>();
             services.AddTransient<IGetPostCommand, GetPostCommand>();
+            services.AddTransient<IEditPostCommand, EditPostCommand>();
 
         }
 

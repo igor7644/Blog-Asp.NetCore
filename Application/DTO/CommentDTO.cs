@@ -1,5 +1,4 @@
-﻿using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +8,5 @@ namespace Business.DTO
     {
         public int Id { get; set; }
         public string CommentText { get; set; }
-        public Post Post { get; set; }
     }
 }

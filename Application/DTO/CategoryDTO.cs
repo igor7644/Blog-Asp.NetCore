@@ -8,5 +8,6 @@ namespace Business.DTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public IEnumerable<PostDTO> Posts { get; set; }
     }
 }

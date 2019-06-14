@@ -27,8 +27,7 @@ namespace Commands
             return query.Select(c => new CommentDTO
             {
                 Id = c.Id,
-                CommentText = c.CommentText,
-                Post = c.Post
+                CommentText = c.CommentText
             });
         }
     }

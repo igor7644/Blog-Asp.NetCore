@@ -27,9 +27,7 @@ namespace Commands
             {
                 Id = post.Id,
                 Title = post.Title,
-                Description = post.Description,
-                User = post.User,
-                Category = post.Category
+                Description = post.Description
             };
         }
     }

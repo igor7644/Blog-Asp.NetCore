@@ -2,6 +2,7 @@
 using Business.DTO;
 using Business.Searches;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,18 @@ namespace Commands
                 query = query.Where(c => c.Name.ToLower().Contains(request.Keyword.ToLower()));
             }
 
+            query.Include(c => c.Posts);
+
             return query.Select(c => new CategoryDTO
             {
                 Id = c.Id,
-                Name = c.Name
+                Name = c.Name,
+                Posts = c.Posts.Select(p => new PostDTO
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Description = p.Description
+                })
             });
         }
     }

@@ -26,8 +26,7 @@ namespace Commands
             return new CommentDTO
             {
                 Id = comment.Id,
-                CommentText = comment.CommentText,
-                Post = comment.Post
+                CommentText = comment.CommentText
             };
         }
     }

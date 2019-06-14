@@ -1,5 +1,4 @@
-﻿using Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
@@ -16,9 +15,11 @@ namespace Business.DTO
 
         [Required(ErrorMessage = "Description is required!")]
         public string Description { get; set; }
-        public User User { get; set; }
-        public Category Category { get; set; }
+        
         public int UserId { get; set; }
         public int CategoryId { get; set; }
+        public UserDTO User { get; set; }
+        public CategoryDTO Category { get; set; }
+        public IEnumerable<CommentDTO> Comments { get; set; }
     }
 }
