@@ -21,13 +21,15 @@ namespace API.Controllers
         private IGetUsersCommand _getCommand;
         private IGetUserCommand _getOneCommand;
         private IAddUserCommand _addUserCommand;
+        private IEditUserCommand _editUserCommand;
 
-        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand, IAddUserCommand addUserCommand)
+        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand, IAddUserCommand addUserCommand, IEditUserCommand editUserCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
             _addUserCommand = addUserCommand;
+            _editUserCommand = editUserCommand;
         }
 
 
@@ -58,25 +60,16 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] UserDTO dto)
         {
-            var user = new UserDTO
-            {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Username = dto.Username
-            };
-
-            _addUserCommand.Execute(user);
-
             try
             {
-                _context.SaveChanges();
+                _addUserCommand.Execute(dto);
 
-                return Created("/api/users/" + user.Id, new UserDTO
+                return Created("/api/users/" + dto.Id, new UserDTO
                 {
-                    Id = user.Id,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Username = user.Username
+                    Id = dto.Id,
+                    FirstName = dto.FirstName,
+                    LastName = dto.LastName,
+                    Username = dto.Username
                 });
             }
             catch
@@ -87,30 +80,11 @@ namespace API.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UserDTO dto)
+        public IActionResult Put([FromBody] UserDTO dto)
         {
-            var user = _context.Users.Find(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            if (user.IsDeleted)
-            {
-                return NotFound();
-            }
-
-            if (_context.Users.Any(u => u.Username == dto.Username))
-            {
-                return Conflict("User with that username already exists!");
-            }
-
-            user.Username = dto.Username;
-
             try
             {
-                _context.SaveChanges();
+                _editUserCommand.Execute(dto);
                 return NoContent();
             }
             catch (Exception)
