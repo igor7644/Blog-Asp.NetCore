@@ -10,7 +10,7 @@ namespace Business.DTO
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Title is required!")]
-        [MinLength(3, ErrorMessage = "Title must have at least 3 characters")]
+        [MinLength(3, ErrorMessage = "Title must have at least 3 characters!")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Description is required!")]
@@ -18,6 +18,7 @@ namespace Business.DTO
         
         public int UserId { get; set; }
         public int CategoryId { get; set; }
+
         public UserDTO User { get; set; }
         public CategoryDTO Category { get; set; }
         public IEnumerable<CommentDTO> Comments { get; set; }
