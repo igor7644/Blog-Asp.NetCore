@@ -18,7 +18,7 @@ namespace Commands
 
         public IEnumerable<UserDTO> Execute(UserSearch request)
         {
-            var query = Context.Users.AsQueryable();
+            var query = Context.Users.Where(u => u.IsDeleted == false).AsQueryable();
 
             if (request.FirstName != null)
             {

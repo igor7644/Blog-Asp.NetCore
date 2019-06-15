@@ -11,37 +11,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Controllers
 {
-    public class PostsController : Controller
+    public class UsersController : Controller
     {
-        private readonly IAddPostCommand _addPost;
-        private readonly IGetPostsCommand _getPosts;
-        private readonly IGetPostCommand _getOnePost;
-        private readonly IEditPostCommand _editPost;
-        private readonly IDeletePostCommand _deletePost;
+        private readonly IGetUsersCommand _getUsers;
+        private readonly IGetUserCommand _getUser;
+        private readonly IAddUserCommand _addUser;
+        private readonly IEditUserCommand _editUser;
+        private readonly IDeleteUserCommand _deleteUser;
 
-        public PostsController(IAddPostCommand addPost, IGetPostsCommand getPosts, IGetPostCommand getOnePost, IEditPostCommand editPost, IDeletePostCommand deletePost)
+        public UsersController(IGetUsersCommand getUsers, IGetUserCommand getUser, IAddUserCommand addUser, IEditUserCommand editUser, IDeleteUserCommand deleteUser)
         {
-            _addPost = addPost;
-            _getPosts = getPosts;
-            _getOnePost = getOnePost;
-            _editPost = editPost;
-            _deletePost = deletePost;
+            _getUsers = getUsers;
+            _getUser = getUser;
+            _addUser = addUser;
+            _editUser = editUser;
+            _deleteUser = deleteUser;
         }
 
 
-        // GET: Posts
-        public ActionResult Index(PostSearch search)
+        // GET: Users
+        public ActionResult Index(UserSearch search)
         {
-            var posts = _getPosts.Execute(search);
-            return View(posts);
+            var users = _getUsers.Execute(search);
+            return View(users);
         }
 
-        // GET: Posts/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int id)
         {
             try
             {
-                var dto = _getOnePost.Execute(id);
+                var dto = _getUser.Execute(id);
                 return View(dto);
             }
             catch (Exception)
@@ -50,16 +50,16 @@ namespace Web.Controllers
             }
         }
 
-        // GET: Posts/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Posts/Create
+        // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(PostDTO collection)
+        public ActionResult Create(UserDTO collection)
         {
             if(!ModelState.IsValid)
             {
@@ -68,12 +68,12 @@ namespace Web.Controllers
 
             try
             {
-                _addPost.Execute(collection);
+                _addUser.Execute(collection);
                 return RedirectToAction(nameof(Index));
             }
             catch (EntityExistException)
             {
-                TempData["error"] = "Post with same name already exist!";
+                TempData["error"] = "User with same username already exist!";
             }
             catch (Exception)
             {
@@ -83,12 +83,12 @@ namespace Web.Controllers
             return View();
         }
 
-        // GET: Posts/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int id)
         {
             try
             {
-                var dto = _getOnePost.Execute(id);
+                var dto = _getUser.Execute(id);
                 return View(dto);
             }
             catch (Exception)
@@ -97,50 +97,50 @@ namespace Web.Controllers
             }
         }
 
-        // POST: Posts/Edit/5
+        // POST: Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, PostDTO dto)
+        public ActionResult Edit(int id, UserDTO dto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(dto);
             }
 
             try
             {
-                _editPost.Execute(dto);
+                _editUser.Execute(dto);
                 return RedirectToAction(nameof(Index));
             }
             catch (EntityExistException)
             {
-                TempData["error"] = "Post with same name already exist!";
+                TempData["error"] = "User with same username already exist!";
             }
             catch (EntityNotFoundException)
             {
                 return RedirectToAction(nameof(Index));
             }
-            
+
             return View();
         }
 
-        // GET: Posts/Delete/5
+        // GET: Users/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Posts/Delete/5
+        // POST: Users/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, PostDTO dto)
+        public ActionResult Delete(int id, UserDTO dto)
         {
             try
             {
-                _deletePost.Execute(dto);
+                _deleteUser.Execute(dto);
                 return RedirectToAction(nameof(Index));
             }
-            catch(EntityNotFoundException)
+            catch (EntityNotFoundException)
             {
                 return View();
             }
