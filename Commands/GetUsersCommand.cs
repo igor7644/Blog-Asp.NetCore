@@ -33,19 +33,12 @@ namespace Commands
                 query = query.Where(u => u.Username.ToLower().Contains(request.Username.ToLower()));
             }
 
-            query.Include(u => u.Posts);
-
             return query.Select(u => new UserDTO
             {
                 Id = u.Id,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
-                Username = u.Username,
-                Posts = u.Posts.Select(p => new PostDTO
-                {
-                    Title = p.Title,
-                    Description = p.Description
-                })
+                Username = u.Username
             }); 
         }
     }

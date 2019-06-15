@@ -2,8 +2,10 @@
 using Business.DTO;
 using Business.Exceptions;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -17,7 +19,7 @@ namespace Commands
 
         public CategoryDTO Execute(int request)
         {
-            var category = Context.Categories.Find(request);
+            var category = Context.Categories.Include(c => c.Posts).Include("Posts.User").FirstOrDefault(c => c.Id == request);
 
             if(category == null)
             {
@@ -27,7 +29,20 @@ namespace Commands
             return new CategoryDTO
             {
                 Id = category.Id,
-                Name = category.Name
+                Name = category.Name,
+                Posts = category.Posts.Select(p => new PostDTO
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Description = p.Description,
+                    User = new UserDTO
+                    {
+                        Id = p.User.Id,
+                        FirstName = p.User.FirstName,
+                        LastName = p.User.LastName,
+                        Username = p.User.Username
+                    }
+                })
             };
         }
     }

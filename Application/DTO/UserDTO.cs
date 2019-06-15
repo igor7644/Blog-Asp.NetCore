@@ -11,6 +11,5 @@ namespace Business.DTO
         public string LastName { get; set; }
         public string Username { get; set; }
         public IEnumerable<PostDTO> Posts { get; set; }
-        public IEnumerable<UserDTO> Users { get; set; }
     }
 }

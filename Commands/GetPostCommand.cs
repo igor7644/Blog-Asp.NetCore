@@ -2,8 +2,10 @@
 using Business.DTO;
 using Business.Exceptions;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Commands
@@ -16,7 +18,7 @@ namespace Commands
 
         public PostDTO Execute(int request)
         {
-            var post = Context.Posts.Find(request);
+            var post = Context.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == request);
 
             if(post == null)
             {
@@ -27,7 +29,12 @@ namespace Commands
             {
                 Id = post.Id,
                 Title = post.Title,
-                Description = post.Description
+                Description = post.Description,
+                Comments = post.Comments.Select(c => new CommentDTO
+                {
+                    Id = c.Id,
+                    CommentText = c.CommentText
+                })
             };
         }
     }

@@ -25,18 +25,11 @@ namespace Commands
                 query = query.Where(p => p.Title.ToLower().Contains(request.Title.ToLower()));
             }
 
-            query.Include(p => p.Comments);
-
             return query.Select(p => new PostDTO
             {
                 Id = p.Id,
                 Title = p.Title,
-                Description = p.Description,
-                Comments = p.Comments.Select(c => new CommentDTO
-                {
-                    Id = c.Id,
-                    CommentText = c.CommentText
-                })
+                Description = p.Description
             });
         }
     }

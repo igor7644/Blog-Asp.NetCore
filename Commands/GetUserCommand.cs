@@ -2,8 +2,10 @@
 using Business.DTO;
 using Business.Exceptions;
 using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Commands
@@ -16,7 +18,7 @@ namespace Commands
 
         public UserDTO Execute(int request)
         {
-            var user = Context.Users.Find(request);
+            var user = Context.Users.Include(u => u.Posts).FirstOrDefault(u => u.Id == request);
 
             if(user == null)
             {
@@ -28,7 +30,13 @@ namespace Commands
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Username = user.Username
+                Username = user.Username,
+                Posts = user.Posts.Select(p => new PostDTO
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                    Description = p.Description
+                })
             };
         }
     }

@@ -26,18 +26,10 @@ namespace Commands
                 query = query.Where(c => c.Name.ToLower().Contains(request.Keyword.ToLower()));
             }
 
-            query.Include(c => c.Posts);
-
             return query.Select(c => new CategoryDTO
             {
                 Id = c.Id,
-                Name = c.Name,
-                Posts = c.Posts.Select(p => new PostDTO
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Description = p.Description
-                })
+                Name = c.Name
             });
         }
     }
