@@ -20,13 +20,17 @@ namespace API.Controllers
         private readonly Context _context;
         private IGetUsersCommand _getCommand;
         private IGetUserCommand _getOneCommand;
+        private IAddUserCommand _addUserCommand;
 
-        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand)
+        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand, IAddUserCommand addUserCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
+            _addUserCommand = addUserCommand;
         }
+
+
 
         // GET: api/Users
         [HttpGet]
@@ -54,14 +58,14 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] UserDTO dto)
         {
-            var user = new User
+            var user = new UserDTO
             {
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Username = dto.Username
             };
 
-            _context.Users.Add(user);
+            _addUserCommand.Execute(user);
 
             try
             {
@@ -83,8 +87,36 @@ namespace API.Controllers
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] UserDTO dto)
         {
+            var user = _context.Users.Find(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.IsDeleted)
+            {
+                return NotFound();
+            }
+
+            if (_context.Users.Any(u => u.Username == dto.Username))
+            {
+                return Conflict("User with that username already exists!");
+            }
+
+            user.Username = dto.Username;
+
+            try
+            {
+                _context.SaveChanges();
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error has occured !!");
+            }
         }
 
         // DELETE: api/ApiWithActions/5
