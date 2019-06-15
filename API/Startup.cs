@@ -38,6 +38,7 @@ namespace API
             services.AddTransient<IEditUserCommand, EditUserCommand>();
             services.AddTransient<IGetPostsCommand, GetPostsCommand>();
             services.AddTransient<IGetPostCommand, GetPostCommand>();
+            services.AddTransient<IAddPostCommand, AddPostCommand>();
             services.AddTransient<IGetCommentsCommand, GetCommentsCommand>();
             services.AddTransient<IGetCommentCommand, GetCommentCommand>();
         }

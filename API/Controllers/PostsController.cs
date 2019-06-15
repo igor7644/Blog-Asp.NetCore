@@ -19,12 +19,14 @@ namespace API.Controllers
         private readonly Context _context;
         private IGetPostsCommand _getCommand;
         private IGetPostCommand _getOneCommand;
+        private IAddPostCommand _addCommand;
 
-        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand)
+        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand, IAddPostCommand addCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
+            _addCommand = addCommand;
         }
 
 
@@ -52,8 +54,23 @@ namespace API.Controllers
 
         // POST: api/Posts
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] PostDTO dto)
         {
+            try
+            {
+                _addCommand.Execute(dto);
+
+                return Created("/api/posts/" + dto.Id, new PostDTO
+                {
+                    Id = dto.Id,
+                    Title = dto.Title,
+                    Description = dto.Description
+                });
+            }
+            catch
+            {
+                return StatusCode(500, "An error has occured !!");
+            }
         }
 
         // PUT: api/Posts/5
