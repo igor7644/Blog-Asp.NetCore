@@ -18,7 +18,7 @@ namespace Commands
 
         public IEnumerable<PostDTO> Execute(PostSearch request)
         {
-            var query = Context.Posts.AsQueryable();
+            var query = Context.Posts.Where(p => p.IsDeleted == false).AsQueryable();
 
             if (request.Title != null)
             {

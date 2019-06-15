@@ -26,14 +26,20 @@ namespace Commands
 
             if(post.Title != request.Title)
             {
-                if(Context.Posts.Any(p => p.Title == request.Title))
+                if (Context.Posts.Any(p => p.Title == request.Title))
                 {
                     throw new EntityExistException();
                 }
-
-                post.Title = request.Title;
-                Context.SaveChanges();
+                
+                post.Title = request.Title;    
             }
+
+            if(post.Description != request.Description)
+            {
+                post.Description = request.Description;
+            }
+
+            Context.SaveChanges();
         }
     }
 }

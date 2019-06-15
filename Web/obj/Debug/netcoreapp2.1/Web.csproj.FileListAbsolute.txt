@@ -40,5 +40,6 @@ C:\Users\igor7\source\repos\ASP-Blog\Web\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\Users\igor7\source\repos\ASP-Blog\Web\bin\Debug\netcoreapp2.1\Domain.pdb
 C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Create.g.cshtml.cs
 C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Index.g.cshtml.cs
-C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Details.g.cshtml.cs
 C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Edit.g.cshtml.cs
+C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Details.g.cshtml.cs
+C:\Users\igor7\source\repos\ASP-Blog\Web\obj\Debug\netcoreapp2.1\Razor\Views\Posts\Delete.g.cshtml.cs

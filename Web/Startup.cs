@@ -41,7 +41,7 @@ namespace Web
             services.AddTransient<IGetPostsCommand, GetPostsCommand>();
             services.AddTransient<IGetPostCommand, GetPostCommand>();
             services.AddTransient<IEditPostCommand, EditPostCommand>();
-
+            services.AddTransient<IDeletePostCommand, DeletePostCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
