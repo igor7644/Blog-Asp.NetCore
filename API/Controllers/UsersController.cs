@@ -52,8 +52,33 @@ namespace API.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] UserDTO dto)
         {
+            var user = new User
+            {
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Username = dto.Username
+            };
+
+            _context.Users.Add(user);
+
+            try
+            {
+                _context.SaveChanges();
+
+                return Created("/api/users/" + user.Id, new UserDTO
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Username = user.Username
+                });
+            }
+            catch
+            {
+                return StatusCode(500, "An error has occured !!");
+            }
         }
 
         // PUT: api/Users/5
