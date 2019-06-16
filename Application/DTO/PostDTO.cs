@@ -13,7 +13,7 @@ namespace Business.DTO
         [MinLength(3, ErrorMessage = "Title must have at least 3 characters!")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Description is required!")]
+        [MinLength(10, ErrorMessage = "Description must have at least 10 characters!")]
         public string Description { get; set; }
         
         public int UserId { get; set; }

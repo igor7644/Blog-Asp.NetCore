@@ -44,6 +44,9 @@ namespace API
             services.AddTransient<IDeletePostCommand, DeletePostCommand>();
             services.AddTransient<IGetCommentsCommand, GetCommentsCommand>();
             services.AddTransient<IGetCommentCommand, GetCommentCommand>();
+            services.AddTransient<IAddCommentCommand, AddCommentCommand>();
+            services.AddTransient<IEditCommentCommand, EditCommentCommand>();
+            services.AddTransient<IDeleteCommentCommand, DeleteCommentCommand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
