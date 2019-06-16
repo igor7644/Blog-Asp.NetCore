@@ -33,17 +33,22 @@ namespace API.Controllers
             _deleteCommand = deleteCommand;
         }
 
-
+        /// <summary>
+        /// Returns all Categories
+        /// </summary>
         // GET api/Categories
         [HttpGet]
-        public IActionResult Get([FromQuery] CategorySearch query)
+        public ActionResult<IEnumerable<CategoryDTO>> Get([FromQuery] CategorySearch query)
         {
             return Ok(_getCommand.Execute(query));
         }
 
+        /// <summary>
+        /// Return one category
+        /// </summary>
         // GET api/categories/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public ActionResult<IEnumerable<CategoryDTO>> Get(int id)
         {
             try
             {
@@ -56,9 +61,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return created category
+        /// </summary>
         // POST api/categories
         [HttpPost]
-        public IActionResult Post([FromBody] CategoryDTO dto)
+        public ActionResult<IEnumerable<CategoryDTO>> Post([FromBody] CategoryDTO dto)
         {
             try
             {
@@ -76,9 +84,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return edited category
+        /// </summary>
         // PUT api/categories/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CategoryDTO dto)
+        public ActionResult<IEnumerable<CategoryDTO>> Put(int id, [FromBody] CategoryDTO dto)
         {
             try
             {
@@ -91,9 +102,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return (soft)deleted category
+        /// </summary>
         // DELETE api/categories/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(CategoryDTO dto)
+        public ActionResult<IEnumerable<CategoryDTO>> Delete(CategoryDTO dto)
         {
             try
             {

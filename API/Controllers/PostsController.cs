@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Business.Commands;
 using Business.DTO;
 using Business.Exceptions;
+using Business.Interfaces;
 using Business.Searches;
 using DataAccess;
 using Microsoft.AspNetCore.Http;
@@ -22,8 +23,9 @@ namespace API.Controllers
         private IAddPostCommand _addCommand;
         private IEditPostCommand _editCommand;
         private IDeletePostCommand _deleteCommand;
+        private readonly IEmailSender _emailSender;
 
-        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand, IAddPostCommand addCommand, IEditPostCommand editCommand, IDeletePostCommand deleteCommand)
+        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand, IAddPostCommand addCommand, IEditPostCommand editCommand, IDeletePostCommand deleteCommand, IEmailSender emailSender)
         {
             _context = context;
             _getCommand = getCommand;
@@ -31,19 +33,25 @@ namespace API.Controllers
             _addCommand = addCommand;
             _editCommand = editCommand;
             _deleteCommand = deleteCommand;
+            _emailSender = emailSender;
         }
 
-
+        /// <summary>
+        /// Returns all Posts
+        /// </summary>
         // GET: api/Posts
         [HttpGet]
-        public IActionResult Get([FromQuery] PostSearch query)
+        public ActionResult<IEnumerable<PostDTO>> Get([FromQuery] PostSearch query)
         {
             return Ok(_getCommand.Execute(query));
         }
 
+        /// <summary>
+        /// Return one post
+        /// </summary>
         // GET: api/Posts/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public ActionResult<IEnumerable<PostDTO>> Get(int id)
         {
             try
             {
@@ -56,9 +64,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return created post
+        /// </summary>
         // POST: api/Posts
         [HttpPost]
-        public IActionResult Post([FromBody] PostDTO dto)
+        public ActionResult<IEnumerable<PostDTO>> Post([FromBody] PostDTO dto)
         {
             try
             {
@@ -70,6 +81,11 @@ namespace API.Controllers
                     Title = dto.Title,
                     Description = dto.Description
                 });
+
+                _emailSender.Subject = "Success!";
+                _emailSender.Body = "Post was successfully created !";
+                _emailSender.ToEmail = "netcoreict@gmail.com";
+                _emailSender.Send();
             }
             catch
             {
@@ -77,9 +93,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return edited post
+        /// </summary>
         // PUT: api/Posts/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] PostDTO dto)
+        public ActionResult<IEnumerable<PostDTO>> Put([FromBody] PostDTO dto)
         {
             try
             {
@@ -92,9 +111,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return (soft)deleted post
+        /// </summary>
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(PostDTO dto)
+        public ActionResult<IEnumerable<PostDTO>> Delete(PostDTO dto)
         {
             try
             {

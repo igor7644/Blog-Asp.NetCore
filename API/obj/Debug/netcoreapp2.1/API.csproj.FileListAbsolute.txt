@@ -21,3 +21,5 @@ C:\Users\igor7\source\repos\ASP-Blog\API\obj\Debug\netcoreapp2.1\API.RazorTarget
 C:\Users\igor7\source\repos\ASP-Blog\API\obj\Debug\netcoreapp2.1\API.csproj.CopyComplete
 C:\Users\igor7\source\repos\ASP-Blog\API\obj\Debug\netcoreapp2.1\API.dll
 C:\Users\igor7\source\repos\ASP-Blog\API\obj\Debug\netcoreapp2.1\API.pdb
+C:\Users\igor7\source\repos\ASP-Blog\API\bin\Debug\netcoreapp2.1\API.xml
+C:\Users\igor7\source\repos\ASP-Blog\API\obj\Debug\netcoreapp2.1\API.xml

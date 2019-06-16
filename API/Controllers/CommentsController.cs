@@ -33,16 +33,22 @@ namespace API.Controllers
             _deleteCommentCommand = deleteCommentCommand;
         }
 
+        /// <summary>
+        /// Returns all Comments
+        /// </summary>
         // GET: api/Comments
         [HttpGet]
-        public IActionResult Get([FromQuery] CommentSearch search)
+        public ActionResult<IEnumerable<CommentDTO>> Get([FromQuery] CommentSearch search)
         {
             return Ok(_getCommentsCommand.Execute(search));
         }
 
+        /// <summary>
+        /// Return one comment
+        /// </summary>
         // GET: api/Comments/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public ActionResult<IEnumerable<CommentDTO>> Get(int id)
         {
             try
             {
@@ -55,9 +61,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return created comment
+        /// </summary>
         // POST: api/Comments
         [HttpPost]
-        public IActionResult Post([FromBody] CommentDTO dto)
+        public ActionResult<IEnumerable<CommentDTO>> Post([FromBody] CommentDTO dto)
         {
             try
             {
@@ -75,9 +84,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return edited comment
+        /// </summary>
         // PUT: api/Comments/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] CommentDTO dto)
+        public ActionResult<IEnumerable<CommentDTO>> Put(int id, [FromBody] CommentDTO dto)
         {
             try
             {
@@ -90,9 +102,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return (soft)deleted comment
+        /// </summary>
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(CommentDTO dto)
+        public ActionResult<IEnumerable<CommentDTO>> Delete(CommentDTO dto)
         {
             try
             {

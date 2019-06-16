@@ -34,17 +34,22 @@ namespace API.Controllers
             _deleteUserCommand = deleteUserCommand;
         }
 
-
+        /// <summary>
+        /// Returns all Users
+        /// </summary>
         // GET: api/Users
         [HttpGet]
-        public IActionResult Get([FromQuery] UserSearch query)
+        public ActionResult<IEnumerable<UserDTO>> Get([FromQuery] UserSearch query)
         {
             return Ok(_getCommand.Execute(query));
         }
 
+        /// <summary>
+        /// Return one user
+        /// </summary>
         // GET: api/Users/5
         [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(int id)
+        public ActionResult<IEnumerable<UserDTO>> Get(int id)
         {
             try
             {
@@ -57,9 +62,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return created user
+        /// </summary>
         // POST: api/Users
         [HttpPost]
-        public IActionResult Post([FromBody] UserDTO dto)
+        public ActionResult<IEnumerable<UserDTO>> Post([FromBody] UserDTO dto)
         {
             try
             {
@@ -79,9 +87,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return edited user
+        /// </summary>
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] UserDTO dto)
+        public ActionResult<IEnumerable<UserDTO>> Put([FromBody] UserDTO dto)
         {
             try
             {
@@ -94,9 +105,12 @@ namespace API.Controllers
             }
         }
 
+        /// <summary>
+        /// Return (soft)deleted user
+        /// </summary>
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(UserDTO dto)
+        public ActionResult<IEnumerable<UserDTO>> Delete(UserDTO dto)
         {
             try
             {

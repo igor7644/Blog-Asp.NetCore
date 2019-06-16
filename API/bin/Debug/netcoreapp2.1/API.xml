@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.CategoriesController.Get(Business.Searches.CategorySearch)">
+            <summary>
+            Returns all Categories
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Get(System.Int32)">
+            <summary>
+            Return one category
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Post(Business.DTO.CategoryDTO)">
+            <summary>
+            Return created category
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Put(System.Int32,Business.DTO.CategoryDTO)">
+            <summary>
+            Return edited category
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CategoriesController.Delete(Business.DTO.CategoryDTO)">
+            <summary>
+            Return (soft)deleted category
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentsController.Get(Business.Searches.CommentSearch)">
+            <summary>
+            Returns all Comments
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentsController.Get(System.Int32)">
+            <summary>
+            Return one comment
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentsController.Post(Business.DTO.CommentDTO)">
+            <summary>
+            Return created comment
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentsController.Put(System.Int32,Business.DTO.CommentDTO)">
+            <summary>
+            Return edited comment
+            </summary>
+        </member>
+        <member name="M:API.Controllers.CommentsController.Delete(Business.DTO.CommentDTO)">
+            <summary>
+            Return (soft)deleted comment
+            </summary>
+        </member>
+        <member name="M:API.Controllers.PostsController.Get(Business.Searches.PostSearch)">
+            <summary>
+            Returns all Posts
+            </summary>
+        </member>
+        <member name="M:API.Controllers.PostsController.Get(System.Int32)">
+            <summary>
+            Return one post
+            </summary>
+        </member>
+        <member name="M:API.Controllers.PostsController.Post(Business.DTO.PostDTO)">
+            <summary>
+            Return created post
+            </summary>
+        </member>
+        <member name="M:API.Controllers.PostsController.Put(Business.DTO.PostDTO)">
+            <summary>
+            Return edited post
+            </summary>
+        </member>
+        <member name="M:API.Controllers.PostsController.Delete(Business.DTO.PostDTO)">
+            <summary>
+            Return (soft)deleted post
+            </summary>
+        </member>
+        <member name="M:API.Controllers.UsersController.Get(Business.Searches.UserSearch)">
+            <summary>
+            Returns all Users
+            </summary>
+        </member>
+        <member name="M:API.Controllers.UsersController.Get(System.Int32)">
+            <summary>
+            Return one user
+            </summary>
+        </member>
+        <member name="M:API.Controllers.UsersController.Post(Business.DTO.UserDTO)">
+            <summary>
+            Return created user
+            </summary>
+        </member>
+        <member name="M:API.Controllers.UsersController.Put(Business.DTO.UserDTO)">
+            <summary>
+            Return edited user
+            </summary>
+        </member>
+        <member name="M:API.Controllers.UsersController.Delete(Business.DTO.UserDTO)">
+            <summary>
+            Return (soft)deleted user
+            </summary>
+        </member>
+    </members>
+</doc>
