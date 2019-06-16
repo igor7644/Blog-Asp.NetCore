@@ -29,19 +29,27 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddDbContext<Context>();
+
             services.AddTransient<IGetCategoriesCommand, GetCategoriesCommand>();
             services.AddTransient<IGetCategoryCommand, GetCategoryCommand>();
+            services.AddTransient<IAddCategoryCommand, AddCategoryCommand>();
+            services.AddTransient<IEditCategoryCommand, EditCategoryCommand>();
+            services.AddTransient<IDeleteCategoryCommand, DeleteCategoryCommand>();
+
             services.AddTransient<IGetUsersCommand, GetUsersCommand>();
             services.AddTransient<IGetUserCommand, GetUserCommand>();
             services.AddTransient<IAddUserCommand, AddUserCommand>();
             services.AddTransient<IEditUserCommand, EditUserCommand>();
             services.AddTransient<IDeleteUserCommand, DeleteUserCommand>();
+
             services.AddTransient<IGetPostsCommand, GetPostsCommand>();
             services.AddTransient<IGetPostCommand, GetPostCommand>();
             services.AddTransient<IAddPostCommand, AddPostCommand>();
             services.AddTransient<IEditPostCommand, EditPostCommand>();
             services.AddTransient<IDeletePostCommand, DeletePostCommand>();
+
             services.AddTransient<IGetCommentsCommand, GetCommentsCommand>();
             services.AddTransient<IGetCommentCommand, GetCommentCommand>();
             services.AddTransient<IAddCommentCommand, AddCommentCommand>();

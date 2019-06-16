@@ -19,12 +19,18 @@ namespace API.Controllers
         private readonly Context _context;
         private IGetCategoriesCommand _getCommand;
         private IGetCategoryCommand _getOneCommand;
+        private IAddCategoryCommand _addCommand;
+        private IEditCategoryCommand _editCommand;
+        private IDeleteCategoryCommand _deleteCommand;
 
-        public CategoriesController(Context context, IGetCategoriesCommand getCommand, IGetCategoryCommand getOneCommand)
+        public CategoriesController(Context context, IGetCategoriesCommand getCommand, IGetCategoryCommand getOneCommand, IAddCategoryCommand addCommand, IEditCategoryCommand editCommand, IDeleteCategoryCommand deleteCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
+            _addCommand = addCommand;
+            _editCommand = editCommand;
+            _deleteCommand = deleteCommand;
         }
 
 
@@ -54,21 +60,14 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] CategoryDTO dto)
         {
-            var category = new Category
-            {
-                Name = dto.Name
-            };
-
-            _context.Categories.Add(category);
-
             try
             {
-                _context.SaveChanges();
+                _addCommand.Execute(dto);
 
-                return Created("/api/categories/" + category.Id, new CategoryDTO
+                return Created("/api/categories/" + dto.Id, new CategoryDTO
                 {
-                    Id = category.Id,
-                    Name = category.Name
+                    Id = dto.Id,
+                    Name = dto.Name
                 });
             }
             catch
@@ -81,59 +80,29 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] CategoryDTO dto)
         {
-            var category = _context.Categories.Find(id);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            if (category.IsDeleted)
-            {
-                return NotFound();
-            }
-
-            if (_context.Categories.Any(c => c.Name == dto.Name))
-            {
-                return Conflict("Category with that name already exists, try again with different name!");
-            }
-
-            category.Name = dto.Name;
-
             try
             {
-                _context.SaveChanges();
+                _editCommand.Execute(dto);
                 return NoContent();
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "An error has occured !!");
             }
         }
 
         // DELETE api/categories/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(CategoryDTO dto)
         {
-            var category = _context.Categories.Find(id);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            if (category.IsDeleted)
-            {
-                return Conflict("That category is already deleted!");
-            }
-                
-            category.IsDeleted = true;
-
             try
             {
-                _context.SaveChanges();
+                _deleteCommand.Execute(dto);
                 return NoContent();
+            }
+            catch (EntityNotFoundException)
+            {
+                return NotFound();
             }
             catch (Exception)
             {
