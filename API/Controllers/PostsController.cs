@@ -20,13 +20,17 @@ namespace API.Controllers
         private IGetPostsCommand _getCommand;
         private IGetPostCommand _getOneCommand;
         private IAddPostCommand _addCommand;
+        private IEditPostCommand _editCommand;
+        private IDeletePostCommand _deleteCommand;
 
-        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand, IAddPostCommand addCommand)
+        public PostsController(Context context, IGetPostsCommand getCommand, IGetPostCommand getOneCommand, IAddPostCommand addCommand, IEditPostCommand editCommand, IDeletePostCommand deleteCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
             _addCommand = addCommand;
+            _editCommand = editCommand;
+            _deleteCommand = deleteCommand;
         }
 
 
@@ -75,14 +79,36 @@ namespace API.Controllers
 
         // PUT: api/Posts/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put([FromBody] PostDTO dto)
         {
+            try
+            {
+                _editCommand.Execute(dto);
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error has occured !!");
+            }
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(PostDTO dto)
         {
+            try
+            {
+                _deleteCommand.Execute(dto);
+                return NoContent();
+            }
+            catch (EntityNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

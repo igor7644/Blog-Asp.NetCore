@@ -9,15 +9,15 @@ namespace Business.DTO
     {
         public int Id { get; set; }
 
-        //[Required(ErrorMessage = "First Name is required!")]
+        [Required(ErrorMessage = "First Name is required!")]
         [MinLength(3, ErrorMessage = "First Name must have at least 3 characters!")]
         public string FirstName { get; set; }
 
-        //[Required(ErrorMessage = "Last Name is required!")]
+        [Required(ErrorMessage = "Last Name is required!")]
         [MinLength(3, ErrorMessage = "Last Name must have at least 5 characters!")]
         public string LastName { get; set; }
 
-        //[Required(ErrorMessage = "Username is required!")]
+        [Required(ErrorMessage = "Username is required!")]
         [MinLength(3, ErrorMessage = "Username must have at least 3 characters!")]
         public string Username { get; set; }
 
