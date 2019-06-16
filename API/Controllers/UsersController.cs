@@ -22,16 +22,17 @@ namespace API.Controllers
         private IGetUserCommand _getOneCommand;
         private IAddUserCommand _addUserCommand;
         private IEditUserCommand _editUserCommand;
+        private IDeleteUserCommand _deleteUserCommand;
 
-        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand, IAddUserCommand addUserCommand, IEditUserCommand editUserCommand)
+        public UsersController(Context context, IGetUsersCommand getCommand, IGetUserCommand getOneCommand, IAddUserCommand addUserCommand, IEditUserCommand editUserCommand, IDeleteUserCommand deleteUserCommand)
         {
             _context = context;
             _getCommand = getCommand;
             _getOneCommand = getOneCommand;
             _addUserCommand = addUserCommand;
             _editUserCommand = editUserCommand;
+            _deleteUserCommand = deleteUserCommand;
         }
-
 
 
         // GET: api/Users
@@ -93,10 +94,23 @@ namespace API.Controllers
             }
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(UserDTO dto)
         {
+            try
+            {
+                _deleteUserCommand.Execute(dto);
+                return NoContent();
+            }
+            catch (EntityNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
