@@ -6,6 +6,7 @@ using Business.Commands;
 using Business.DTO;
 using Business.Exceptions;
 using Business.Searches;
+using DataAccess;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,14 +14,16 @@ namespace Web.Controllers
 {
     public class PostsController : Controller
     {
+        private readonly Context _context;
         private readonly IAddPostCommand _addPost;
         private readonly IGetPostsCommand _getPosts;
         private readonly IGetPostCommand _getOnePost;
         private readonly IEditPostCommand _editPost;
         private readonly IDeletePostCommand _deletePost;
 
-        public PostsController(IAddPostCommand addPost, IGetPostsCommand getPosts, IGetPostCommand getOnePost, IEditPostCommand editPost, IDeletePostCommand deletePost)
+        public PostsController(Context context, IAddPostCommand addPost, IGetPostsCommand getPosts, IGetPostCommand getOnePost, IEditPostCommand editPost, IDeletePostCommand deletePost)
         {
+            _context = context;
             _addPost = addPost;
             _getPosts = getPosts;
             _getOnePost = getOnePost;
@@ -53,6 +56,18 @@ namespace Web.Controllers
         // GET: Posts/Create
         public ActionResult Create()
         {
+            ViewBag.Users = _context.Users.Select(u => new UserDTO
+            {
+                Id = u.Id,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                Username = u.Username
+            });
+            ViewBag.Categories = _context.Categories.Select(c => new CategoryDTO
+            {
+                Id = c.Id,
+                Name = c.Name
+            });
             return View();
         }
 

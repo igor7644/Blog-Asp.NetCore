@@ -65,7 +65,7 @@ using Web.Models;
             WriteLiteral("\r\n<h1>Index</h1>\r\n\r\n<div>\r\n    <h4>All Posts</h4>\r\n\r\n    <p>\r\n        ");
             EndContext();
             BeginContext(203, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "18cdac156b5f4412adac2fa02b94b98a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d4ab12fce67d47ec8854a9006ae4ff40", async() => {
                 BeginContext(226, 10, true);
                 WriteLiteral("CREATE NEW");
                 EndContext();
@@ -204,7 +204,7 @@ Write(Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }));
             WriteLiteral(" |\r\n    ");
             EndContext();
             BeginContext(1855, 38, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "256b5d54846848c398acf7961d2132aa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1a70f09e714092ab5d4667e1bdf7eb", async() => {
                 BeginContext(1877, 12, true);
                 WriteLiteral("Back to List");
                 EndContext();

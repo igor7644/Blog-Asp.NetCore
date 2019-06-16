@@ -67,12 +67,12 @@ using Web.Models;
             WriteLiteral("\r\n\r\n<h3>Are you sure you want to delete user?</h3>\r\n<div>\r\n    <hr />\r\n    \r\n    ");
             EndContext();
             BeginContext(201, 160, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9ffc7a98820140d48935c5f01f7661d7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0a574eb612d449b5a65af00c9ce65584", async() => {
                 BeginContext(227, 83, true);
                 WriteLiteral("\r\n        <input type=\"submit\" value=\"Delete\" class=\"btn btn-danger\" /> |\r\n        ");
                 EndContext();
                 BeginContext(310, 38, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2f612492b31344c68a7bfc04ee2ac075", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9df2b3ea8d1a498a928ed82214e6b3ee", async() => {
                     BeginContext(332, 12, true);
                     WriteLiteral("Back to List");
                     EndContext();

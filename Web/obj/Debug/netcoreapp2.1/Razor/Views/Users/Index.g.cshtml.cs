@@ -64,7 +64,7 @@ using Web.Models;
             WriteLiteral("\r\n<h2>Index</h2>\r\n\r\n<h4>All Users</h4>\r\n\r\n<p>\r\n    ");
             EndContext();
             BeginContext(183, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3c8c59a44709465a8fb7512eccb4bf1d", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe52570e5bd6449fadd690eb100a3c80", async() => {
                 BeginContext(206, 10, true);
                 WriteLiteral("CREATE NEW");
                 EndContext();
