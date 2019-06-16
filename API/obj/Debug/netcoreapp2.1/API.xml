@@ -5,9 +5,21 @@
     </assembly>
     <members>
         <member name="M:API.Controllers.CategoriesController.Get(Business.Searches.CategorySearch)">
-            <summary>
-            Returns all Categories
-            </summary>
+             <summary>
+             Returns all Categories
+             </summary>
+             
+              <remarks>
+              Sample request:
+              
+                 GET /Categories
+                 {
+                    "id": 1,
+                    "Name": "Name 1"
+                    "Posts": "Posts"
+                 }
+            
+             </remarks>
         </member>
         <member name="M:API.Controllers.CategoriesController.Get(System.Int32)">
             <summary>
@@ -30,9 +42,20 @@
             </summary>
         </member>
         <member name="M:API.Controllers.CommentsController.Get(Business.Searches.CommentSearch)">
-            <summary>
-            Returns all Comments
-            </summary>
+             <summary>
+             Returns all Comments
+             </summary>
+             
+              <remarks>
+              Sample request:
+              
+                 GET /Comments
+                 {
+                    "id": 1,
+                    "Comment": "Comment 1"
+                 }
+            
+             </remarks>
         </member>
         <member name="M:API.Controllers.CommentsController.Get(System.Int32)">
             <summary>
@@ -55,9 +78,25 @@
             </summary>
         </member>
         <member name="M:API.Controllers.PostsController.Get(Business.Searches.PostSearch)">
-            <summary>
-            Returns all Posts
-            </summary>
+             <summary>
+             Returns all Posts
+             </summary>
+             
+              <remarks>
+              Sample request:
+              
+                 GET /Posts
+                 {
+                    "id": 1,
+                    "Title": "Title 1",
+                    "Description": "Description 1",
+                    "UserId": "1",
+                    "CategoryId": "1",
+                    "Users": "Users",
+                    "Categories": "Categories
+                 }
+            
+             </remarks>
         </member>
         <member name="M:API.Controllers.PostsController.Get(System.Int32)">
             <summary>
@@ -80,9 +119,23 @@
             </summary>
         </member>
         <member name="M:API.Controllers.UsersController.Get(Business.Searches.UserSearch)">
-            <summary>
-            Returns all Users
-            </summary>
+             <summary>
+             Returns all Users
+             </summary>
+             
+              <remarks>
+              Sample request:
+              
+                 GET /Users
+                 {
+                    "id": 1,
+                    "FirstName": "Name",
+                    "LastName": "Last Name",
+                    "Username": "Username",
+                    "Posts": "Posts"
+                 }
+            
+             </remarks>
         </member>
         <member name="M:API.Controllers.UsersController.Get(System.Int32)">
             <summary>

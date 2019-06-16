@@ -37,6 +37,20 @@ namespace API.Controllers
         /// <summary>
         /// Returns all Users
         /// </summary>
+        /// 
+        ///  <remarks>
+        ///  Sample request:
+        ///  
+        ///     GET /Users
+        ///     {
+        ///        "id": 1,
+        ///        "FirstName": "Name",
+        ///        "LastName": "Last Name",
+        ///        "Username": "Username",
+        ///        "Posts": "Posts"
+        ///     }
+        ///
+        /// </remarks>
         // GET: api/Users
         [HttpGet]
         public ActionResult<IEnumerable<UserDTO>> Get([FromQuery] UserSearch query)

@@ -39,6 +39,22 @@ namespace API.Controllers
         /// <summary>
         /// Returns all Posts
         /// </summary>
+        /// 
+        ///  <remarks>
+        ///  Sample request:
+        ///  
+        ///     GET /Posts
+        ///     {
+        ///        "id": 1,
+        ///        "Title": "Title 1",
+        ///        "Description": "Description 1",
+        ///        "UserId": "1",
+        ///        "CategoryId": "1",
+        ///        "Users": "Users",
+        ///        "Categories": "Categories
+        ///     }
+        ///
+        /// </remarks>
         // GET: api/Posts
         [HttpGet]
         public ActionResult<IEnumerable<PostDTO>> Get([FromQuery] PostSearch query)

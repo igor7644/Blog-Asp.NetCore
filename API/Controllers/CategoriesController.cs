@@ -36,6 +36,18 @@ namespace API.Controllers
         /// <summary>
         /// Returns all Categories
         /// </summary>
+        /// 
+        ///  <remarks>
+        ///  Sample request:
+        ///  
+        ///     GET /Categories
+        ///     {
+        ///        "id": 1,
+        ///        "Name": "Name 1"
+        ///        "Posts": "Posts"
+        ///     }
+        ///
+        /// </remarks>
         // GET api/Categories
         [HttpGet]
         public ActionResult<IEnumerable<CategoryDTO>> Get([FromQuery] CategorySearch query)

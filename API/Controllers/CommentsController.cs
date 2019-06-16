@@ -36,6 +36,17 @@ namespace API.Controllers
         /// <summary>
         /// Returns all Comments
         /// </summary>
+        /// 
+        ///  <remarks>
+        ///  Sample request:
+        ///  
+        ///     GET /Comments
+        ///     {
+        ///        "id": 1,
+        ///        "Comment": "Comment 1"
+        ///     }
+        ///
+        /// </remarks>
         // GET: api/Comments
         [HttpGet]
         public ActionResult<IEnumerable<CommentDTO>> Get([FromQuery] CommentSearch search)
